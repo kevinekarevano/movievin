@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/homePage.jsx";
 import "./index.css";
 import ErrorPage from "./pages/404.jsx";
+import DetailPage from "./pages/detailPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,8 +14,12 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/detail",
-    element: <h1>detail page</h1>,
+    path: "/movie/:id",
+    element: <DetailPage />,
+  },
+  {
+    path: "/about",
+    element: <div>hello</div>,
   },
 ]);
 

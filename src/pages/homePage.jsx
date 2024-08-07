@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/navbar";
 import axios from "axios";
 import Search from "@/components/search";
@@ -8,6 +9,8 @@ const HomePage = () => {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
+
+  
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
@@ -48,7 +51,7 @@ const HomePage = () => {
       <img className="fixed w-80  right-0" src="src/assets/blob2.png" alt="" />
 
       <div className=" flex pt-32  flex-col justify-center items-center min-h-[50vh] mb-20">
-        <div className=" justify-center flex mt-10">
+        <div className=" justify-center  flex mt-10">
           <img className="w-[32rem]" src="src/assets/logo.svg" alt="ragline" />
         </div>
 
@@ -60,10 +63,12 @@ const HomePage = () => {
           searchResult.map((item, index) => {
             return (
               <div key={index} className="z-40 rounded-lg overflow-hidden w-1/5">
-                <div>
-                  <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt="" />
-                  <p className="text-white">{item.title}</p>
-                </div>
+                <Link to={`/movie/${item.id}`}>
+                  <div>
+                    <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt="" />
+                    <p className="text-white">{item.title}</p>
+                  </div>
+                </Link>
               </div>
             );
           })
