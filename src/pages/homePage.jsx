@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import Navbar from "@/components/navbar";
-import axios from "axios";
+import MovieCard from "@/components/fragments/movieCard";
 import Search from "@/components/search";
 
 const HomePage = () => {
@@ -9,8 +8,6 @@ const HomePage = () => {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
-
-  
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
@@ -49,7 +46,6 @@ const HomePage = () => {
       <Navbar />
       <img className="fixed top-10   left-0" src="src/assets/blob1.png" alt="" />
       <img className="fixed w-80  right-0" src="src/assets/blob2.png" alt="" />
-
       <div className=" flex pt-32  flex-col justify-center items-center min-h-[50vh] mb-20">
         <div className=" justify-center  flex mt-10">
           <img className="w-[32rem]" src="src/assets/logo.svg" alt="ragline" />
@@ -58,24 +54,7 @@ const HomePage = () => {
         <Search change={handleChange} inputRef={searchInputRef} />
       </div>
 
-      <div className="flex justify-center pb-10  h-full flex-wrap  gap-10">
-        {searchResult.length > 0 ? (
-          searchResult.map((item, index) => {
-            return (
-              <div key={index} className="z-40 rounded-lg overflow-hidden w-1/5">
-                <Link to={`/movie/${item.id}`}>
-                  <div>
-                    <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt="" />
-                    <p className="text-white">{item.title}</p>
-                  </div>
-                </Link>
-              </div>
-            );
-          })
-        ) : (
-          <p className="text-white font-semibold text-lg">No results found😥</p>
-        )}
-      </div>
+      <div className="flex justify-center pb-10  h-full flex-wrap  gap-10">{searchResult.length > 0 ? <MovieCard data={searchResult} /> : <p className="text-white font-semibold text-lg">No results found😥</p>}</div>
     </div>
   );
 };

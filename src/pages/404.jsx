@@ -1,4 +1,5 @@
 import { useRouteError } from "react-router-dom";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const ErrorPage = () => {
   const error = useRouteError();
