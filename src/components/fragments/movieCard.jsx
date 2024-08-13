@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 const MovieCard = ({ data }) => {
   return data.map((item, index) => {
     return (
-      <div key={index} className="z-40   overflow-hidden mt-5 w-1/5">
+      <div key={index} className="z-40   overflow-hidden mt-5 w-1/6">
         <Link to={`/movie/${item.id}`}>
           <div>
-            <div className="bg-slate-200 h-96 rounded-lg overflow-hidden">
-              <img className="w-full h-full object-cover" src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt="" />
+            <div className="bg-slate-200 h-72 rounded-lg overflow-hidden">
+              <img className="w-full h-full object-cover" src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={`${item.title}-image`} />
             </div>
             <p className="text-white truncate font-bold text-2xl mt-2">{item.title}</p>
             <div className="flex justify-between mt-3">

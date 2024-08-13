@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import Dot from "@/components/dot";
 import Loaders from "@/components/loaders";
 
-
 const DetailPage = () => {
   const [movie, setMovie] = useState(null);
   const [caster, setCaster] = useState([]);
@@ -41,6 +40,25 @@ const DetailPage = () => {
 
   const directed = director ? director.filter((person) => person.job === "Director") : [];
   const popularCast = caster ? caster.filter((person) => person.popularity > 10) : [];
+
+  
+  const popularCastText = popularCast
+    .map((item, index) => item.name)
+    .reduce((acc, name, index, array) => {
+      if (index === array.length - 1) {
+        return `${acc}${name}.`; // Tambahkan titik di akhir nama terakhir
+      }
+      return `${acc}${name}, `;
+    }, "");
+
+  const directedText = directed
+    .map((item) => item.name)
+    .reduce((acc, name, index, array) => {
+      if (index === array.length - 1) {
+        return `${acc}${name}.`; // Tambahkan titik di akhir nama terakhir
+      }
+      return `${acc}${name}, `;
+    }, "");
 
   return (
     <div className="bg-primaryBg min-h-screen">
@@ -85,16 +103,13 @@ const DetailPage = () => {
 
             <div className="flex gap-20 mt-10">
               <p className="font-bold text-zinc-300">Star</p>
-              <p className="text-white font-semibold">{popularCast.map((item) => `${item.name}, `)}</p>
+              <p className="text-white font-semibold">{popularCastText}</p>
             </div>
 
             <div className="flex gap-7 mt-10">
               <p className="font-bold text-zinc-300">Directed By</p>
-              {directed.map((item, index) => (
-                <p key={index} className="text-white font-semibold">
-                  {item.name}
-                </p>
-              ))}
+
+              <p className="text-white font-semibold">{directedText}</p>
             </div>
           </div>
         </div>
