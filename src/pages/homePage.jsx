@@ -156,21 +156,27 @@ const HomePage = () => {
       </div>
 
       <div className="flex">
-        <ScrollArea className="w-1/6 p-5">
+        <ScrollArea className="w-1/6 h-screen p-5">
           <p className="text-white font-monument  text-3xl">Genres</p>
           {genres.length > 0 ? (
-            genres.map((item, index) => (
-              <p onClick={() => handleGenreId(item)} className="text-white font-light text-lg cursor-pointer hover:font-semibold duration-300" key={index}>
-                {item.name}
+            <div>
+              {genres.map((item, index) => (
+                <p onClick={() => handleGenreId(item)} className="text-white font-light text-lg cursor-pointer hover:font-semibold duration-300" key={index}>
+                  {item.name}
+                </p>
+              ))}
+
+              <Separator className="my-5" />
+              <h1 className="text-white ">
+                Made By <span className="text-yellow-200">Kevin</span>
+              </h1>
+              <p className="text-white font-light">
+                Using <span className="font-bold">TMDB API</span>
               </p>
-            ))
+            </div>
           ) : (
             <Loaders />
           )}
-
-          <Separator className="my-5" />
-          <h1 className="text-white ">Made By <span className="text-yellow-200">Kevin</span></h1>
-          <p className="text-white font-light">Using <span className="font-bold">TMDB API</span></p>
         </ScrollArea>
 
         <ScrollArea className="w-full bg-zinc-900 bg-opacity-30 rounded-tl-3xl pb-10 h-screen">
