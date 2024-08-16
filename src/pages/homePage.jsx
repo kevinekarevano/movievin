@@ -5,7 +5,7 @@ import Search from "@/components/search";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Loaders from "@/components/loaders";
 import { Separator } from "@/components/ui/separator";
-import GenreMovie from "@/components/fragments/genreMovie";
+
 
 const HomePage = () => {
   const [discoverMovies, setDiscoverMovies] = useState([]);
@@ -137,7 +137,7 @@ const HomePage = () => {
       <img className="fixed rotate-180 top-10 left-0" src="src/assets/blob2.png" alt="" /> */}
       <div className="flex pt-32 flex-col justify-center items-center min-h-[50vh] mb-20">
         <div className="justify-center flex mt-10">
-          <img className="w-[32rem]" src="src/assets/logo.svg" alt="ragline" />
+          <img className="w-[32rem]" src="assets/logo.svg" alt="logo" />
         </div>
 
         <Search change={handleChange} inputRef={searchInputRef} />
