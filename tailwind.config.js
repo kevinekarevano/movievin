@@ -29,6 +29,13 @@ module.exports = {
       colors: {
         primaryBg: "#252525",
       },
+      fontFamily: {
+        monument: ["monument", "sans-serif"],
+      },
+      fontWeight: {
+        regular: 400,
+        bold: 700,
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

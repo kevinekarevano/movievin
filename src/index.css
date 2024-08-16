@@ -2,5 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "monument";
+  src: url("./assets/fonts/MonumentExtended-Regular.otf") format("opentype");
+  font-weight: 400;
+}
 
-  
+@font-face {
+  font-family: "monument";
+  src: url("./assets/fonts/MonumentExtended-Ultrabold.otf") format("opentype");
+  font-weight: 700;
+}

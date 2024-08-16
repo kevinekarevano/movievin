@@ -14,22 +14,21 @@ const DetailPage = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=f6cd99bd3f5a84bb726cd9c3311f7d07`);
+        const movieResponse = await fetch(`${import.meta.env.VITE_API_URL}movie/${id}?api_key=${import.meta.env.VITE_API_KEY}`);
         const movieData = await movieResponse.json();
         if (movieData && movieData.status_code !== 34) {
-          // Status code 34 berarti film tidak ditemukan
           setMovie(movieData);
 
-          const creditsResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=f6cd99bd3f5a84bb726cd9c3311f7d07`);
+          const creditsResponse = await fetch(`${import.meta.env.VITE_API_URL}movie/${id}/credits?api_key=${import.meta.env.VITE_API_KEY}`);
           const creditsData = await creditsResponse.json();
           setCaster(creditsData.cast);
           setDirector(creditsData.crew);
         } else {
-          setMovie(null); // Tidak ada data film
+          setMovie(null);
         }
       } catch (error) {
         console.error("Failed to fetch data", error);
-        setMovie(null); // Tangani error dengan mengatur movie menjadi null
+        setMovie(null);
       } finally {
         setIsLoading(false);
       }
@@ -38,78 +37,49 @@ const DetailPage = () => {
     fetchData();
   }, [id]);
 
-  const directed = director ? director.filter((person) => person.job === "Director") : [];
-  const popularCast = caster ? caster.filter((person) => person.popularity > 10) : [];
+  const directed = director.filter((person) => person.job === "Director");
+  const popularCast = caster.filter((person) => person.popularity > 10);
 
-  
-  const popularCastText = popularCast
-    .map((item, index) => item.name)
-    .reduce((acc, name, index, array) => {
-      if (index === array.length - 1) {
-        return `${acc}${name}.`; // Tambahkan titik di akhir nama terakhir
-      }
-      return `${acc}${name}, `;
-    }, "");
-
-  const directedText = directed
-    .map((item) => item.name)
-    .reduce((acc, name, index, array) => {
-      if (index === array.length - 1) {
-        return `${acc}${name}.`; // Tambahkan titik di akhir nama terakhir
-      }
-      return `${acc}${name}, `;
-    }, "");
+  const formatText = (items) => items.map((item) => item.name).join(", ");
 
   return (
     <div className="bg-primaryBg min-h-screen">
       {isLoading ? (
         <Loaders />
-      ) : // Tampilkan loader saat data sedang dimuat
-      movie ? (
-        <div className={`p-10 flex gap-10`}>
-          <img className="fixed blur-md brightness-50 right-0 top-0 w-full opacity-30 h-full object-cover " src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt="" />
+      ) : movie ? (
+        <div className="p-10 flex gap-10">
+          <img className="fixed blur-md brightness-50 right-0 top-0 w-full opacity-30 h-full object-cover" src={movie.backdrop_path? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}` : `https://i.pinimg.com/564x/0d/2c/7e/0d2c7ea30eae81c3a575b4e4f1f93e1a.jpg`} alt="Backdrop" />
           <div className="w-1/2 z-[999]">
-            <img className="rounded-xl w-full" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />
+            <img className="rounded-xl w-full" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="Poster" />
           </div>
           <div className="p-6 w-full z-[999]">
-            <h1 className="text-white text-7xl font-bold">{movie.title}</h1>
+            <h1 className="text-white text-5xl  font-monument">{movie.title}</h1>
             <div className="flex gap-3 items-center mt-3">
               <p className="text-zinc-400">
                 <span className="mr-1">⭐</span>
                 {movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}
               </p>
-
               <Dot />
-
               <p className="text-zinc-400">{movie.runtime ? `${movie.runtime}m` : "N/A"}</p>
-
               <Dot />
-
               <p className="text-zinc-400">{movie.release_date ? movie.release_date.split("-")[0] : "N/A"}</p>
-
               <p className="bg-slate-700 text-white font-bold inline-block rounded-md px-1">PG</p>
             </div>
             <div className="flex gap-2 mt-3">
-              {movie.genres
-                ? movie.genres.map((item, index) => (
-                    <p className="text-zinc-400 font-semibold" key={index}>
-                      {item.name},
-                    </p>
-                  ))
-                : "N/A"}
+              {movie.genres.map((item) => (
+                <p className="text-zinc-400 font-semibold" key={item.id}>
+                  {item.name}
+                </p>
+              ))}
             </div>
-
-            <p className="text-white text-lg mt-6">{movie.overview ? movie.overview : "No overview available"}</p>
-
+            <p className="text-white text-lg mt-6">{movie.overview || "No overview available"}</p>
             <div className="flex gap-20 mt-10">
               <p className="font-bold text-zinc-300">Star</p>
-              <p className="text-white font-semibold">{popularCastText}</p>
+              <p className="text-white font-semibold">{popularCast.length > 0 ? formatText(popularCast) : "No popular cast available"}</p>
             </div>
-
             <div className="flex gap-7 mt-10">
               <p className="font-bold text-zinc-300">Directed By</p>
-
-              <p className="text-white font-semibold">{directedText}</p>
+              <p className="text-white font-semibold">{directed.length > 0 ? formatText(directed) : "No director information available"}</p>
             </div>
           </div>
         </div>
