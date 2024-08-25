@@ -13,3 +13,10 @@
   src: url("./assets/fonts/MonumentExtended-Ultrabold.otf") format("opentype");
   font-weight: 700;
 }
+
+.swiper-button-next {
+  @apply hidden lg:block ;
+}
+.swiper-button-prev {
+  @apply hidden lg:block ;
+}

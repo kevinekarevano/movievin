@@ -5,7 +5,6 @@ import HomePage from "./pages/homePage.jsx";
 import "./index.css";
 import ErrorPage from "./pages/404.jsx";
 import DetailPage from "./pages/detailPage.jsx";
-import { Skeleton } from "./components/ui/skeleton.jsx";
 
 const router = createBrowserRouter([
   {
@@ -16,15 +15,7 @@ const router = createBrowserRouter([
   {
     path: "/movie/:id",
     element: <DetailPage />,
-  },
-  {
-    path: "/about",
-    element: (
-      <div className="min-h-screen bg-red-200">
-        hello
-        <Skeleton className='h-screen' />
-      </div>
-    ),
+    errorElement: <ErrorPage />,
   },
 ]);
 

@@ -37,8 +37,8 @@ const DetailPage = () => {
     fetchData();
   }, [id]);
 
-  const directed = director.filter((person) => person.job === "Director");
-  const popularCast = caster.filter((person) => person.popularity > 10);
+  const directed = director.filter((person) => person.job === "Director") || [];
+  const popularCast = caster.filter((person) => person.popularity > 10) || [];
 
   const formatText = (items) => items.map((item) => item.name).join(", ");
 
@@ -47,13 +47,17 @@ const DetailPage = () => {
       {isLoading ? (
         <Loaders />
       ) : movie ? (
-        <div className="p-10 flex gap-10">
-          <img className="fixed blur-md brightness-50 right-0 top-0 w-full opacity-30 h-full object-cover" src={movie.backdrop_path? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}` : `https://i.pinimg.com/564x/0d/2c/7e/0d2c7ea30eae81c3a575b4e4f1f93e1a.jpg`} alt="Backdrop" />
-          <div className="w-1/2 z-[999]">
-            <img className="rounded-xl w-full" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="Poster" />
+        <div className="lg:p-10 md:flex gap-10">
+          <img
+            className="fixed blur-md brightness-50 right-0 top-0 w-full opacity-30 h-full object-cover"
+            src={movie.backdrop_path ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}` : `https://i.pinimg.com/564x/0d/2c/7e/0d2c7ea30eae81c3a575b4e4f1f93e1a.jpg`}
+            alt="Backdrop"
+          />
+          <div className="p-10 md:p-0  sm:w-1/2">
+            <img className="rounded-xl   w-full" src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : "https://www.shutterstock.com/image-vector/image-icon-600nw-211642900.jpg"} alt="Poster" />
           </div>
-          <div className="p-6 w-full z-[999]">
-            <h1 className="text-white text-5xl  font-monument">{movie.title}</h1>
+          <div className="p-6 w-full z-[999999] ">
+            <h1 className="text-white text-2xl md:text-5xl  font-monument">{movie.title}</h1>
             <div className="flex gap-3 items-center mt-3">
               <p className="text-zinc-400">
                 <span className="mr-1">⭐</span>
