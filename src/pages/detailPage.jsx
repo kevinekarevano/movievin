@@ -68,7 +68,7 @@ const DetailPage = () => {
                 <p className="text-zinc-400">{movie.runtime ? `${movie.runtime}m` : "N/A"}</p>
                 <Dot />
                 <p className="text-zinc-400">{movie.release_date ? movie.release_date.split("-")[0] : "N/A"}</p>
-                <p className="bg-slate-700 text-white font-bold inline-block rounded-md px-1">PG</p>
+                <p className="bg-zinc-800 text-yellow-500 font-bold inline-block rounded-md px-1">{movie.original_language.toUpperCase()}</p>
               </div>
               <div className="flex gap-2 mt-3">
                 {movie.genres.map((item) => (
