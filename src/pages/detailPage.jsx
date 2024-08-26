@@ -47,43 +47,45 @@ const DetailPage = () => {
       {isLoading ? (
         <Loaders />
       ) : movie ? (
-        <div className="lg:p-10 md:flex gap-10">
-          <img
+        <div style={{ backgroundImage: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')` }} className="bg-cover bg-top">
+          {/* <img
             className="fixed blur-md brightness-50 right-0 top-0 w-full opacity-30 h-full object-cover"
-            src={movie.backdrop_path ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}` : `https://i.pinimg.com/564x/0d/2c/7e/0d2c7ea30eae81c3a575b4e4f1f93e1a.jpg`}
+            src={movie.backdrop_path ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}` : `https://www.shutterstock.com/image-vector/image-icon-600nw-211642900.jpg`}
             alt="Backdrop"
-          />
-          <div className="p-10 md:p-0  sm:w-1/2">
-            <img className="rounded-xl   w-full" src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : "https://www.shutterstock.com/image-vector/image-icon-600nw-211642900.jpg"} alt="Poster" />
-          </div>
-          <div className="p-6 w-full z-[999999] ">
-            <h1 className="text-white text-2xl md:text-5xl  font-monument">{movie.title}</h1>
-            <div className="flex gap-3 items-center mt-3">
-              <p className="text-zinc-400">
-                <span className="mr-1">⭐</span>
-                {movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}
-              </p>
-              <Dot />
-              <p className="text-zinc-400">{movie.runtime ? `${movie.runtime}m` : "N/A"}</p>
-              <Dot />
-              <p className="text-zinc-400">{movie.release_date ? movie.release_date.split("-")[0] : "N/A"}</p>
-              <p className="bg-slate-700 text-white font-bold inline-block rounded-md px-1">PG</p>
+          /> */}
+          <div className="lg:p-10 bg-black bg-opacity-85    md:flex gap-10">
+            <div className="p-10 md:p-0 shadow-2xl  sm:w-1/2">
+              <img className="rounded-xl   w-full" src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : "https://www.shutterstock.com/image-vector/image-icon-600nw-211642900.jpg"} alt="Poster" />
             </div>
-            <div className="flex gap-2 mt-3">
-              {movie.genres.map((item) => (
-                <p className="text-zinc-400 font-semibold" key={item.id}>
-                  {item.name}
+            <div className="p-6 w-full  ">
+              <h1 className="text-white text-2xl md:text-5xl   font-monument">{movie.title}</h1>
+              <div className="flex gap-3 items-center mt-3">
+                <p className="text-zinc-400">
+                  <span className="mr-1">⭐</span>
+                  {movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}
                 </p>
-              ))}
-            </div>
-            <p className="text-white text-lg mt-6">{movie.overview || "No overview available"}</p>
-            <div className="flex gap-20 mt-10">
-              <p className="font-bold text-zinc-300">Star</p>
-              <p className="text-white font-semibold">{popularCast.length > 0 ? formatText(popularCast) : "No popular cast available"}</p>
-            </div>
-            <div className="flex gap-7 mt-10">
-              <p className="font-bold text-zinc-300">Directed By</p>
-              <p className="text-white font-semibold">{directed.length > 0 ? formatText(directed) : "No director information available"}</p>
+                <Dot />
+                <p className="text-zinc-400">{movie.runtime ? `${movie.runtime}m` : "N/A"}</p>
+                <Dot />
+                <p className="text-zinc-400">{movie.release_date ? movie.release_date.split("-")[0] : "N/A"}</p>
+                <p className="bg-slate-700 text-white font-bold inline-block rounded-md px-1">PG</p>
+              </div>
+              <div className="flex gap-2 mt-3">
+                {movie.genres.map((item) => (
+                  <p className="text-zinc-400 font-semibold" key={item.id}>
+                    {item.name}
+                  </p>
+                ))}
+              </div>
+              <p className="text-white text-lg mt-6">{movie.overview || "No overview available"}</p>
+              <div className="flex gap-20 mt-10">
+                <p className="font-bold text-zinc-300">Star</p>
+                <p className="text-white font-semibold">{popularCast.length > 0 ? formatText(popularCast) : "No popular cast available"}</p>
+              </div>
+              <div className="flex gap-7 mt-10">
+                <p className="font-bold text-zinc-300">Directed By</p>
+                <p className="text-white font-semibold">{directed.length > 0 ? formatText(directed) : "No director information available"}</p>
+              </div>
             </div>
           </div>
         </div>

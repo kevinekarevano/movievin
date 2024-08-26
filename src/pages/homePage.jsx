@@ -31,7 +31,7 @@ const HomePage = () => {
 
   const handleNavbar = () => {
     const scrollPosition = Math.round(window.scrollY);
-    console.log(scrollPosition);
+    // console.log(scrollPosition);
     scrollPosition >= 120 ? setShowNavbar(true) : setShowNavbar(false);
   };
 
@@ -278,7 +278,7 @@ const HomePage = () => {
             </SheetTitle>
           </SheetHeader>
           {genres.length > 0 ? (
-            <div>
+            <div c>
               {genres.map((item, index) => (
                 <SheetClose asChild key={index}>
                   <p onClick={() => handleGenreId(item)} className="text-white font-light text-lg cursor-pointer hover:font-semibold duration-300">
