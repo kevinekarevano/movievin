@@ -96,6 +96,8 @@ const HomePage = () => {
     getGenre();
   }, []);
 
+
+
   useEffect(() => {
     const getSearchResults = async () => {
       if (search.trim() === "") {
@@ -232,6 +234,8 @@ const HomePage = () => {
             <SkeletonGenre />
           )}
         </ScrollArea> 
+
+
 
         <ScrollArea className="w-full   bg-zinc-900 l   bg-opacity-30 md:rounded-tl-3xl lg:pb-6 md:h-screen  h-full">
           {search.trim() !== "" ? (
