@@ -245,7 +245,7 @@ const HomePage = () => {
           ) : genreId ? (
             <h1 className="font-bold text-2xl text-yellow-300 p-5">Genre Movies</h1>
           ) : (
-            <h1 className="font-bold text-2xl text-yellow-300 p-5">hahaha</h1>
+            <h1 className="font-bold text-2xl text-yellow-300 p-5">Popular Movie</h1>
           )}
           {loading ? (
             <Loaders />
