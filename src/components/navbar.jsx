@@ -9,7 +9,7 @@ const Navbar = ({ searchHandle, searchRef, isShow, type = false }) => {
         </nav>
       ) : (
         <nav>
-          <div className={`bg-gradient-to-l from-primaryBg to-zinc-950  flex justify-between items-center  text-cyan-900 p-5`}>
+          <div className={` bg-cover bg-center  bg-[url('https://i.pinimg.com/originals/01/9f/5c/019f5c50d2c49ae35aaefc9834bf4550.gif')]  flex justify-between items-center  text-cyan-900 p-5`}>
             <img className=" w-40 h-full " src="assets/logo.svg" alt="Logo" />
             
           </div>

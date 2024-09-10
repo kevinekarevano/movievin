@@ -67,7 +67,7 @@ const HomePage = () => {
         if (!res.ok) throw new Error("Failed fetch discover movies ");
 
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         setDiscoverMovies(data.results);
       } catch (err) {
         setError(err.message);

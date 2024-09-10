@@ -48,11 +48,6 @@ const DetailPage = () => {
         <Loaders />
       ) : movie ? (
         <div style={{ backgroundImage: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')` }} className="bg-cover bg-top">
-          {/* <img
-            className="fixed blur-md brightness-50 right-0 top-0 w-full opacity-30 h-full object-cover"
-            src={movie.backdrop_path ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}` : `https://www.shutterstock.com/image-vector/image-icon-600nw-211642900.jpg`}
-            alt="Backdrop"
-          /> */}
           <div className="lg:p-10 bg-black bg-opacity-85    md:flex gap-10">
             <div className="p-10 md:p-0 shadow-2xl  sm:w-1/2">
               <img className="rounded-xl   w-full" src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : "https://www.shutterstock.com/image-vector/image-icon-600nw-211642900.jpg"} alt="Poster" />
