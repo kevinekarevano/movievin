@@ -96,6 +96,8 @@ const HomePage = () => {
     getGenre();
   }, []);
 
+
+
   useEffect(() => {
     const getSearchResults = async () => {
       if (search.trim() === "") {
@@ -231,7 +233,9 @@ const HomePage = () => {
           ) : (
             <SkeletonGenre />
           )}
-        </ScrollArea>
+        </ScrollArea> 
+
+
 
         <ScrollArea className="w-full   bg-zinc-900 l   bg-opacity-30 md:rounded-tl-3xl lg:pb-6 md:h-screen  h-full">
           {search.trim() !== "" ? (
@@ -241,7 +245,7 @@ const HomePage = () => {
           ) : genreId ? (
             <h1 className="font-bold text-2xl text-yellow-300 p-5">Genre Movies</h1>
           ) : (
-            <h1 className="font-bold text-2xl text-yellow-300 p-5">Top Movie</h1>
+            <h1 className="font-bold text-2xl text-yellow-300 p-5">Popular Movie</h1>
           )}
           {loading ? (
             <Loaders />
