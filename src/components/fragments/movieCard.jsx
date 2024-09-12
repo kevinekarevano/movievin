@@ -7,7 +7,7 @@ const MovieCard = ({ data }) => {
         <Link to={`/movie/${item.id}`}>
           <div className=" h-full">
             <div className=" rounded-lg h-96 overflow-hidden">
-              <img className="h-full w-full object-cover" src={item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : "https://www.shutterstock.com/image-vector/image-icon-600nw-211642900.jpg"} alt={`${item.title}-image`} />
+              <img className="h-full w-full lg:object-cover" src={item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : "https://www.shutterstock.com/image-vector/image-icon-600nw-211642900.jpg"} alt={`${item.title}-image`} />
             </div>
             
             <p className="text-white truncate font-bold text-2xl mt-2">{item.title}</p>
